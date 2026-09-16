@@ -24,6 +24,7 @@ func main() {
 		go func(conn net.Conn) {
 			defer conn.Close()
 			var buff [1024]byte
+
 			n, err := conn.Read(buff[:])
 			if err != nil {
 				log.Println("erro ao ler:", err)
