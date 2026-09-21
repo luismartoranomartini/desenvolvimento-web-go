@@ -9,23 +9,23 @@ import (
 func main() {
 	conn, err := net.Dial("tcp", "localhost:8080")
 	if err != nil {
-		log.Println("erro ao estabelecer conexão:", err)
+		log.Println("erro ao iniciar o cliente:", err)
 		return
 	}
-	defer conn.Close()
 
-	msg := []byte("Olá, servidor!")
+	msg := []byte("mensagem")
 	_, errWrite := conn.Write(msg)
 	if errWrite != nil {
 		log.Println("erro ao escrever no cliente:", errWrite)
 		return
 	}
 	buffer := make([]byte, 1024)
-	r, errRead := conn.Read(buffer)
+	rRead, errRead := conn.Read(buffer)
 	if errRead != nil {
 		log.Println("erro ao ler no cliente:", errRead)
 		return
 	}
-	fmt.Println("Bytes enviados:", r)
-	fmt.Println("Dados recebidos:", string(buffer[:r]))
+	fmt.Println("Bytes enviados:", rRead)
+	fmt.Println("Dados enviados:", string(rRead))
+
 }
