@@ -37,7 +37,7 @@ func handlerConnection(conn net.Conn) {
 		}
 		name = strings.ToLower(strings.TrimSpace(name))
 		value = strings.TrimSpace(value)
-		header["name"] = value
+		header[name] = value
 	}
 	log.Println("Host:", header["host"])
 	log.Println("Connection:", header["connection"])
